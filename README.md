@@ -7,47 +7,47 @@
 Для Mac OS 
 
 - Сборка ноды **ipfs**:
-  1) Скачиваем дистрибутив ноды (актуальная версия по [ссылке](https://dist.ipfs.io/#go-ipfs))
-  ```sh
-  $ wget https://dist.ipfs.io/go-ipfs/v0.8.0/go-ipfs_v0.8.0_darwin-amd64.tar.gz 
-  ```
-  2) Разархивируем папку и выполним следующие команды
-  ```sh
-  $ tar -xvzf go-ipfs_v0.8.0_darwin-amd64.tar.gz
-  $ cd go-ipfs
-  $ bash install.sh
-  ```
-  3) Проинициализируем **ipfs** и запустим процесс
-  ```sh
-  $ ipfs init
-  $ ipfs daemon
-  ```
-  4) Запоминаем адрес ipfs-ноды и заносим его в **node.js_application/config.json** (При запуске он будет отображаться напротив поля *API server listening on* в формате */ip4/<IP-адрес>/tcp/<Номер порта>*)
+ 1) Скачиваем дистрибутив ноды (актуальная версия по [ссылке](https://dist.ipfs.io/#go-ipfs))
+ ```sh
+ $ wget https://dist.ipfs.io/go-ipfs/v0.8.0/go-ipfs_v0.8.0_darwin-amd64.tar.gz 
+ ```
+ 2) Разархивируем папку и выполним следующие команды
+ ```sh
+ $ tar -xvzf go-ipfs_v0.8.0_darwin-amd64.tar.gz
+ $ cd go-ipfs
+ $ bash install.sh
+ ```
+ 3) Проинициализируем **ipfs** и запустим процесс
+ ```sh
+ $ ipfs init
+ $ ipfs daemon
+ ```
+ 4) Запоминаем адрес ipfs-ноды и заносим его в **node.js_application/config.json** (При запуске он будет отображаться напротив поля *API server listening on* в формате */ip4/<IP-адрес>/tcp/<Номер порта>*)
 
 - Сборка ноды **ethereum**:
-  1) Скачиваем дистрибутив
-  ```sh
-  $ brew tap ethereum/ethereum
-  $ brew install ethereum
-  ```
-  2) В корне проекта создаем папку *data*
-  ```sh
-  $ mkdir data
-  ```
-  3) Создаем новый аккаунт и запоминаем его публичный адрес.
-  ```sh
-  $ geth account new -datadir data
-  ```
-  4) (Optional) Для тестирование можно создать несколько аккаунтов и их прописать их в **genesis.json** в разделе *alloc* для начисления баланса
-  5) Выполнить следующую команду для запуска майнинг-ноды и разблокировку аккаунт
-  ```sh
-  $ geth --datadir data --http --mine --networkid 15 --miner.etherbase <Запомненный аккаунт> --miner.gasprice 0 --miner.threads 2 --unlock <Запомненный аккаунт> --allow-insecure-unlock
-  ```
-  6) Запоминаем адрес ethereum-ноды и заносим его в **node.js_application/config.json** (При запуске он будет отображаться напротив поля *INFO [date] HTTP server started endpoint=* в формате *<IP-адрес>:<Номер порта>*)
-  7) После деплоя контракта ноду можно запускать так
-  ```sh
-  $ geth --datadir data --http --mine --networkid 15 --miner.etherbase <Любой созданный акканут> --miner.gasprice 0 --miner.threads 2
-  ```
+ 1) Скачиваем дистрибутив
+ ```sh
+ $ brew tap ethereum/ethereum
+ $ brew install ethereum
+ ```
+ 2) В корне проекта создаем папку *data*
+ ```sh
+ $ mkdir data
+ ```
+ 3) Создаем новый аккаунт и запоминаем его публичный адрес.
+ ```sh
+ $ geth account new -datadir data
+ ```
+ 4) (Optional) Для тестирование можно создать несколько аккаунтов и их прописать их в **genesis.json** в разделе *alloc* для начисления баланса
+ 5) Выполнить следующую команду для запуска майнинг-ноды и разблокировку аккаунт
+ ```sh
+ $ geth --datadir data --http --mine --networkid 15 --miner.etherbase <Запомненный аккаунт> --miner.gasprice 0 --miner.threads 2 --unlock <Запомненный аккаунт> --allow-insecure-unlock
+ ```
+ 6) Запоминаем адрес ethereum-ноды и заносим его в **node.js_application/config.json** (При запуске он будет отображаться напротив поля *INFO [date] HTTP server started endpoint=* в формате *<IP-адрес>:<Номер порта>*)
+ 7) После деплоя контракта ноду можно запускать так
+ ```sh
+ $ geth --datadir data --http --mine --networkid 15 --miner.etherbase <Любой созданный акканут> --miner.gasprice 0 --miner.threads 2
+ ```
 
 ## Инструкция по деплою контракта 
  1) Добавляем свою локальную сеть в brownie, в качестве *host* указываем сохраненный адресс ethereum-ноды
