@@ -1,0 +1,5 @@
+{
+    "ipfs_node_ip": "/ip4/127.0.0.1/tcp/5001", 
+    "geth_node_ip": "http://127.0.0.1:8545",
+    "contract_address": "0x012479C091336e21e23b7624f1Ae172F161A5b06"
+}
